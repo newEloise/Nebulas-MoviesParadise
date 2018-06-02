@@ -216,5 +216,5 @@ $(function(){
 			return info;
 		}
 	}
-	$('#rate-comm-1').rater(options);
+	$('#rate-comment').rater(options);
 });
