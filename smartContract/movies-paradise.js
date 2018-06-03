@@ -7,6 +7,7 @@ var Movie = function (text) {
         this.name = obj.name;//名称
         this.code = obj.code;//编号
         this.genre = obj.genre;//类型
+        this.genreName = obj.genreName;//类型（中文）
         this.releaseDate = obj.releaseDate;//上映日期
         this.story = obj.story;//剧情简介
         this.score = obj.score;//平均评分
@@ -16,7 +17,7 @@ var Movie = function (text) {
         this.screenWriter = obj.screenWriter;//编剧
         this.leadActor = obj.leadActor;//主演
         this.area = obj.area;//制片国家/区域
-        this.areaName = obj.areaName;//制片国家/区域
+        this.areaName = obj.areaName;//制片国家/区域（中文）
         this.min = obj.min;//片长
         this.imgSrc = obj.imgSrc;//图片地址
         this.heat = obj.heat;//热度
@@ -25,6 +26,7 @@ var Movie = function (text) {
         this.name = "";//名称
         this.code = "";//编号
         this.genre = "";//类型
+        this.genreName = "";//类型（中文）
         this.releaseDate = "";//上映日期
         this.story = "";//剧情简介
         this.score = "";//平均评分
@@ -176,13 +178,14 @@ MoviesParadiseContract.prototype = {
         return "";
     },
     //新增电影
-    setMovie: function(name,code,genre,releaseDate,story,director,screenWriter,
+    setMovie: function(name,code,genre,genreName,releaseDate,story,director,screenWriter,
                        leadActor,area,areaName,min,imgSrc,heat){
         var record = new Movie();
         record.id = this.movieSize//ID
         record.name = name;//名称
         record.code = code;//编号
         record.genre = genre;//类型
+        record.genreName = genreName;//类型（中文）
         record.releaseDate = releaseDate;//上映日期
         record.story = story;//剧情简介
         record.score = 0;//平均评分
@@ -200,10 +203,35 @@ MoviesParadiseContract.prototype = {
         this.movieRecords.put(this.movieSize,record);
         this.movieSize += 1;
     },
+    //编辑电影
+    updateMovie: function(id,name,code,genre,genreName,releaseDate,story,director,screenWriter,
+                       leadActor,area,areaName,min,imgSrc,heat){
+        var record = new Movie();
+        record.id = id//ID
+        record.name = name;//名称
+        record.code = code;//编号
+        record.genre = genre;//类型
+        record.genreName = genreName;//类型（中文）
+        record.releaseDate = releaseDate;//上映日期
+        record.story = story;//剧情简介
+        record.score = 0;//平均评分
+        record.totalScore = 0;//总分
+        record.scoreNumber = 0;//评分人数
+        record.director = director;//导演
+        record.screenWriter = screenWriter;//编剧
+        record.leadActor = leadActor;//主演
+        record.area = area;//制片国家/区域
+        record.areaName = areaName;//制片国家/区域
+        record.min = min;//片长
+        record.imgSrc = imgSrc;//图片地址
+        record.heat = heat;//热度
+
+        this.movieRecords.set(id, record);
+    },
     //分页得到最新的电影，currentPage当前页，pageNum每页个数
     getRcentMovies:function (currentPage, pageNum) {
         var arr = new Array();
-        for(var i=0; i<this.size; i++){
+        for(var i=0; i<this.movieSize; i++){
             arr.push(this.movieRecords.get(i));
         }
         for(var i=0; i<arr.length; i++){
@@ -217,7 +245,7 @@ MoviesParadiseContract.prototype = {
         }
         currentPage = parseInt(currentPage);
         pageNum = parseInt(pageNum);
-        var offset = (currentPage-1)*pageNum + 1;//起始
+        var offset = (currentPage-1)*pageNum;//起始
         if(offset>this.movieSize){
             throw new Error("currentPage is not valid");
         }
@@ -235,7 +263,7 @@ MoviesParadiseContract.prototype = {
     //分页得到最热的电影，currentPage当前页，pageNum每页个数
     getHottestMovies:function (currentPage, pageNum) {
         var arr = new Array();
-        for(var i=0; i<this.size; i++){
+        for(var i=0; i<this.movieSize; i++){
             arr.push(this.movieRecords.get(i));
         }
         for(var i=0; i<arr.length; i++){
@@ -249,7 +277,7 @@ MoviesParadiseContract.prototype = {
         }
         currentPage = parseInt(currentPage);
         pageNum = parseInt(pageNum);
-        var offset = (currentPage-1)*pageNum + 1;//起始
+        var offset = (currentPage-1)*pageNum;//起始
         if(offset>this.movieSize){
             throw new Error("currentPage is not valid");
         }
@@ -267,7 +295,7 @@ MoviesParadiseContract.prototype = {
     //分页得到最Top的电影，currentPage当前页，pageNum每页个数
     getTopMovies:function (currentPage, pageNum) {
         var arr = new Array();
-        for(var i=0; i<this.size; i++){
+        for(var i=0; i<this.movieSize; i++){
             arr.push(this.movieRecords.get(i));
         }
         for(var i=0; i<arr.length; i++){
@@ -281,7 +309,7 @@ MoviesParadiseContract.prototype = {
         }
         currentPage = parseInt(currentPage);
         pageNum = parseInt(pageNum);
-        var offset = (currentPage-1)*pageNum + 1;//起始
+        var offset = (currentPage-1)*pageNum;//起始
         if(offset>this.movieSize){
             throw new Error("currentPage is not valid");
         }
@@ -299,20 +327,20 @@ MoviesParadiseContract.prototype = {
     //根据类型分页得到的电影，currentPage当前页，pageNum每页个数
     getMoviesByGenre:function (type, currentPage, pageNum) {
         var arr = new Array();
-        for(var i=0; i<this.size; i++){
+        for(var i=0; i<this.movieSize; i++){
             if(this.movieRecords.get(i).genre == type){
                 arr.push(this.movieRecords.get(i));
             }
         }
         currentPage = parseInt(currentPage);
         pageNum = parseInt(pageNum);
-        var offset = (currentPage-1)*pageNum + 1;//起始
+        var offset = (currentPage-1)*pageNum;//起始
         if(offset>this.movieSize){
             throw new Error("currentPage is not valid");
         }
         var number = offset + pageNum;//总数
-        if(number > this.movieSize){
-            number = this.movieSize;
+        if(number > arr.length){
+            number = arr.length;
         }
         var result  = [];
         for(var i=offset; i<number; i++){
@@ -324,20 +352,20 @@ MoviesParadiseContract.prototype = {
     //根据区域分页得到的电影，currentPage当前页，pageNum每页个数
     getMoviesByArea:function (area, currentPage, pageNum) {
         var arr = new Array();
-        for(var i=0; i<this.size; i++){
+        for(var i=0; i<this.movieSize; i++){
             if(this.movieRecords.get(i).area == area){
                 arr.push(this.movieRecords.get(i));
             }
         }
         currentPage = parseInt(currentPage);
         pageNum = parseInt(pageNum);
-        var offset = (currentPage-1)*pageNum + 1;//起始
+        var offset = (currentPage-1)*pageNum;//起始
         if(offset>this.movieSize){
             throw new Error("currentPage is not valid");
         }
         var number = offset + pageNum;//总数
-        if(number > this.movieSize){
-            number = this.movieSize;
+        if(number > arr.length){
+            number = arr.length;
         }
         var result  = [];
         for(var i=offset; i<number; i++){
@@ -353,7 +381,7 @@ MoviesParadiseContract.prototype = {
     //根据类型得到电影的数量
     getMovieSizeByGenre:function (type) {
         var arr = new Array();
-        for(var i=0; i<this.size; i++){
+        for(var i=0; i<this.movieSize; i++){
             if(this.movieRecords.get(i).genre == type){
                 arr.push(this.movieRecords.get(i));
             }
@@ -363,7 +391,7 @@ MoviesParadiseContract.prototype = {
     //根据区域得到电影的数量
     getMovieSizeByArea:function (area) {
         var arr = new Array();
-        for(var i=0; i<this.size; i++){
+        for(var i=0; i<this.movieSize; i++){
             if(this.movieRecords.get(i).area == area){
                 arr.push(this.movieRecords.get(i));
             }
@@ -399,6 +427,7 @@ MoviesParadiseContract.prototype = {
                 newRecord.name = rocord.name;//名称
                 newRecord.code = rocord.code;//编号
                 newRecord.genre = rocord.genre;//类型
+                newRecord.genreName = rocord.genreName;//类型
                 newRecord.releaseDate = rocord.releaseDate;//上映日期
                 newRecord.story = rocord.story;//剧情简介
                 newRecord.totalScore = rocord.totalScore + score;//总分
@@ -446,21 +475,35 @@ MoviesParadiseContract.prototype = {
     setNews: function(title,subTitle,author,comment,form,imgSrc,newstime){
         var record = new News();
         record.id = this.newsSize//ID
-        this.title = title;//新闻标题
-        this.subTitle = subTitle;//短标题
-        this.author = author;//作者
-        this.comment = comment;//内容
-        this.form = form;//来源
-        this.imgSrc = imgSrc;//图片地址
-        this.newstime = newstime;//发布时间
+        record.title = title;//新闻标题
+        record.subTitle = subTitle;//短标题
+        record.author = author;//作者
+        record.comment = comment;//内容
+        record.form = form;//来源
+        record.imgSrc = imgSrc;//图片地址
+        record.newstime = newstime;//发布时间
 
         this.newsRecords.put(this.newsSize,record);
         this.newsSize += 1;
     },
+    //编辑新闻
+    updateNews: function(id,title,subTitle,author,comment,form,imgSrc,newstime){
+        var record = new News();
+        record.id = id//ID
+        record.title = title;//新闻标题
+        record.subTitle = subTitle;//短标题
+        record.author = author;//作者
+        record.comment = comment;//内容
+        record.form = form;//来源
+        record.imgSrc = imgSrc;//图片地址
+        record.newstime = newstime;//发布时间
+
+        this.newsRecords.set(id,record);
+    },
     //分页得到最新的新闻，currentPage当前页，pageNum每页个数
     getRcentNews:function (currentPage, pageNum) {
         var arr = new Array();
-        for(var i=0; i<this.size; i++){
+        for(var i=0; i<this.newsSize; i++){
             arr.push(this.newsRecords.get(i));
         }
         for(var i=0; i<arr.length; i++){
@@ -474,7 +517,7 @@ MoviesParadiseContract.prototype = {
         }
         currentPage = parseInt(currentPage);
         pageNum = parseInt(pageNum);
-        var offset = (currentPage-1)*pageNum + 1;//起始
+        var offset = (currentPage-1)*pageNum;//起始
         if(offset>this.newsSize){
             throw new Error("currentPage is not valid");
         }
