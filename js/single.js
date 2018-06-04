@@ -151,6 +151,10 @@ $(document).ready(function () {
         initStarHtml();
         $("#form-title").val('');
         $("#form-content").val('');
+
+        setTimeout(function() {
+            window.location.replace("single.html?code="+code+"&name="+name+"&movieId="+movieId);
+        },20000);
     }
 
     function initStarHtml() {

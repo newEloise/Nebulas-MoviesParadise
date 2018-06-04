@@ -132,6 +132,10 @@ $(document).ready(function () {
     function cbPush(resp) {
         $("#form-title").val('');
         $("#form-content").val('');
+
+        setTimeout(function() {
+            window.location.replace("news-single.html?newsId="+newsId);
+        },20000);
     };
 
     function cbPush2(resp) {

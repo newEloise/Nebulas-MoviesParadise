@@ -468,6 +468,9 @@
     var NebPay = require("nebpay");
     var nebPay = new NebPay();
     var dappAddress = "n231D89R8Vb9WcUBjjeeLotEzhYxw97GptF";
+    var code = getUrlParam("code");
+    var name = getUrlParam("name");
+    var movieId = getUrlParam("movieId");
 
     function thumbs(reviewId) {
         var to = dappAddress;
@@ -481,8 +484,16 @@
     }
 
     function cbPush2(resp) {
-
+        setTimeout(function() {
+            window.location.replace("single.html?code="+code+"&name="+name+"&movieId="+movieId);
+        },20000);
     };
+
+    function getUrlParam(name){
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return decodeURI(r[2]); return null;
+    }
 </script>
 </body>
 </html>
