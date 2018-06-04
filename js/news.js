@@ -30,8 +30,8 @@ $(document).ready(function () {
                 var html = $("#newsTemplate").html();
                 html = html.replace("{{newsId}}",result[i].id);
                 html = html.replace("{{title}}",result[i].title);
-                if(result[i].comment.length > 100){
-                    html = html.replace("{{comment}}",result[i].comment.substring(0,97)+"...");
+                if(result[i].comment.length > 150){
+                    html = html.replace("{{comment}}",result[i].comment.substring(0,147)+"...");
                 }else{
                     html = html.replace("{{comment}}",result[i].comment);
                 }
