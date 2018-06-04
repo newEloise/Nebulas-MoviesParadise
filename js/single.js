@@ -11,7 +11,7 @@ $(document).ready(function () {
     if(typeof(webExtensionWallet) === "undefined") {
         $("#noExtension").show();
     }
-    var dappAddress = "n213z7m52AujEDo6DmBJQoGLW4biEPXwA5y";
+    var dappAddress = "n231D89R8Vb9WcUBjjeeLotEzhYxw97GptF";
     getMovieByCode(code);
     getAllReview(movieId);
 
@@ -82,8 +82,9 @@ $(document).ready(function () {
             $("#hottest-review2").empty();
             if(result.length > 0){
                 var html1 = $("#reviewTemplate1").html();
-                //html1 = html1.replace("{{title}}",result[0].title);
-                html1 = html1.replace("{{content}}",result[0].content);
+                html1 = html1.replace("{{reviewId}}",result[0].id);
+                html1 = html1.replace("{{title}}",result[0].title);
+                html1 = html1.replace("{{comment}}",result[0].comment);
                 html1 = html1.replace("{{author}}",result[0].author);
                 html1 = html1.replace("{{score}}",result[0].score);
                 html1 = html1.replace("{{submitTime}}",result[0].submitTime);
@@ -94,7 +95,9 @@ $(document).ready(function () {
             if(result.length > 1){
                 for(var i=1; i<result.length; i++){
                     var html2 = $("#reviewTemplate2").html();
-                    html2 = html2.replace("{{content}}",result[i].content);
+                    html2 = html2.replace("{{reviewId}}",result[i].id);
+                    html2 = html2.replace("{{title}}",result[i].title);
+                    html2 = html2.replace("{{comment}}",result[i].comment);
                     html2 = html2.replace("{{author}}",result[i].author);
                     html2 = html2.replace("{{score}}",result[i].score);
                     html2 = html2.replace("{{submitTime}}",result[i].submitTime);
@@ -136,10 +139,9 @@ $(document).ready(function () {
         var callArgs = [];
         callArgs.push(movieId);
         callArgs.push(submitTime);
-        //callArgs.push(title);
+        callArgs.push(title);
         callArgs.push(comment);
         callArgs.push(score);
-        debugger;
         nebPay.call(to, value, callFunction, JSON.stringify(callArgs), {
             listener: cbPush
         });

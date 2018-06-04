@@ -116,7 +116,6 @@ var NewsReview = function (text) {
         this.submitTime = obj.submitTime;//提交时间
         this.title = obj.title;//标题
         this.comment = obj.comment;//内容
-        this.score = obj.score;//评分
         this.likeNum = obj.likeNum;//点赞数量
     } else {
         this.id = 0;//ID
@@ -125,7 +124,6 @@ var NewsReview = function (text) {
         this.submitTime = "";//提交时间
         this.title = "";//标题
         this.comment = "";//内容
-        this.score = 0;//评分
         this.likeNum = 0;//点赞数量
     }
 };
@@ -140,7 +138,7 @@ var MoviesParadiseContract = function () {
     LocalContractStorage.defineMapProperty(this, "movieRecords");
     LocalContractStorage.defineMapProperty(this, "movieReviewRecords");
     LocalContractStorage.defineMapProperty(this, "newsRecords");
-    LocalContractStorage.defineMapProperty(this, "newsReviewrecords");
+    LocalContractStorage.defineMapProperty(this, "newsReviewRecords");
 
     LocalContractStorage.defineProperty(this, "movieSize");
     LocalContractStorage.defineProperty(this, "movieReviewSize");
@@ -204,7 +202,7 @@ MoviesParadiseContract.prototype = {
         record.imgSrc = imgSrc;//图片地址
         record.heat = heat;//热度
 
-        this.movieRecords.put(this.movieSize,record);
+        this.movieRecords.set(this.movieSize,record);
         this.movieSize += 1;
     },
     //编辑电影
@@ -406,8 +404,8 @@ MoviesParadiseContract.prototype = {
     getMovieReviewsByMovieId:function (movieId) {
         var result  = [];
         for(var i=0; i<this.movieReviewSize; i++){
-            if(this.movieReviewRecords[i].movieId == movieId){
-                var object = arr[i];
+            if(this.movieReviewRecords.get(i).movieId == movieId){
+                var object = this.movieReviewRecords.get(i);
                 result.push(object);
             }
 
@@ -416,16 +414,18 @@ MoviesParadiseContract.prototype = {
     },
     //提交电影评论
     submitMovieReview:function (movieId, submitTime, title, comment, score) {
+        var addr = Blockchain.transaction.from;
         var record = new MovieReview();
         record.id = this.movieReviewSize;
         record.movieId = movieId;
         record.submitTime = submitTime;
+        record.author = addr;
         record.title = title;
         record.comment = comment;
         record.score = score;
         record.likeNum = 0;
         for(var i=0; i<this.movieSize; i++){
-            var movie = this.movieRecords[i];
+            var movie = this.movieRecords.get(i);
             if(movie.id == movieId){
                 var newRecord = new Movie();
                 newRecord.id = movie.id//ID
@@ -435,9 +435,10 @@ MoviesParadiseContract.prototype = {
                 newRecord.genreName = movie.genreName;//类型
                 newRecord.releaseDate = movie.releaseDate;//上映日期
                 newRecord.story = movie.story;//剧情简介
-                newRecord.totalScore = movie.totalScore + score;//总分
-                newRecord.scoreNumber = movie.scoreNumber + 1;//评分人数
-                newRecord.score = movie.totalScore/newRecord.scoreNumber;//平均评分
+                newRecord.totalScore = parseInt(movie.totalScore) + parseInt(score);//总分
+                newRecord.scoreNumber = parseInt(movie.scoreNumber) + 1;//评分人数
+                var score = parseFloat(newRecord.totalScore/newRecord.scoreNumber).toFixed(2);
+                newRecord.score = score; //平均评分
                 newRecord.director = movie.director;//导演
                 newRecord.screenWriter = movie.screenWriter;//编剧
                 newRecord.leadActor = movie.leadActor;//主演
@@ -450,19 +451,20 @@ MoviesParadiseContract.prototype = {
             }
         }
 
-        this.movieReviewRecords.put(this.movieReviewSize,record);
+        this.movieReviewRecords.set(this.movieReviewSize,record);
         this.movieReviewSize += 1;
     },
     //给电影评论点赞
     likeMovieReview:function (movieReviewId) {
         var likeNum = 0;
         for(var i=0; i<this.movieReviewSize; i++){
-          if(this.movieReviewRecords[i].id == movieReviewId){
-              var record = this.movieReviewRecords[i];
-              likeNum = record.likeNum + 1;
+          if(this.movieReviewRecords.get(i).id == movieReviewId){
+              var record = this.movieReviewRecords.get(i);
+              likeNum = parseInt(record.likeNum) + 1;
               var newRecord = new MovieReview();
               newRecord.id = record.id;
               newRecord.movieId = record.movieId;
+              newRecord.submitTime = record.submitTime;
               newRecord.submitTime = record.submitTime;
               newRecord.title = record.title;
               newRecord.comment = record.comment;
@@ -489,7 +491,7 @@ MoviesParadiseContract.prototype = {
         record.imgSrc = imgSrc;//图片地址
         record.newstime = newstime;//发布时间
 
-        this.newsRecords.put(this.newsSize,record);
+        this.newsRecords.set(this.newsSize,record);
         this.newsSize += 1;
     },
     //编辑新闻
@@ -543,11 +545,11 @@ MoviesParadiseContract.prototype = {
         return this.newsSize;
     },
     //得到新闻的所有的评论
-    getNewsReviewsByMovieId:function (newsId) {
+    getNewsReviewsByNewsId:function (newsId) {
         var result  = [];
         for(var i=0; i<this.newsReviewSize; i++){
-            if(this.newsReviewRecords[i].newsId == newsId){
-                var object = arr[i];
+            if(this.newsReviewRecords.get(i).newsId == newsId){
+                var object = this.newsReviewRecords.get(i);
                 result.push(object);
             }
 
@@ -555,38 +557,41 @@ MoviesParadiseContract.prototype = {
         return JSON.stringify(result);
     },
     //提交新闻评论
-    submitNewsReview:function (newsId, submitTime, title, comment, score) {
+    submitNewsReview:function (newsId, submitTime, title, comment) {
+        var addr = Blockchain.transaction.from;
         var record = new NewsReview();
         record.id = this.newsReviewSize;
         record.newsId = newsId;
         record.submitTime = submitTime;
+        record.author = addr;
         record.title = title;
         record.comment = comment;
-        record.score = score;
         record.likeNum = 0;
 
-        this.movieReviewRecords.put(this.movieReviewSize,record);
-        this.movieReviewSize += 1;
+        this.newsReviewRecords.set(this.newsReviewSize,record);
+        this.newsReviewSize += 1;
     },
     //给电影评论点赞
     likeNewsReview:function (newsReviewId) {
         var likeNum = 0;
         for(var i=0; i<this.newsReviewSize; i++){
-            if(this.newsReviewRecords[i].id == newsReviewId){
-                var record = this.newsReviewRecords[i];
-                likeNum = record.likeNum + 1;
+            if(this.newsReviewRecords.get(i).id == newsReviewId){
+                var record = this.newsReviewRecords.get(i);
+                likeNum = parseInt(record.likeNum) + 1;
                 var newRecord = new NewsReview();
                 newRecord.id = record.id;
                 newRecord.newsId = record.newsId;
                 newRecord.submitTime = record.submitTime;
+                newRecord.author = record.author;
                 newRecord.title = record.title;
                 newRecord.comment = record.comment;
-                newRecord.score = record.score;
                 newRecord.likeNum = likeNum;
                 this.newsReviewRecords.set(i, newRecord);
             }
         }
     },
 };
+
+
 
 module.exports = MoviesParadiseContract;

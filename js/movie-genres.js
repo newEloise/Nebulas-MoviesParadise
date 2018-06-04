@@ -9,7 +9,7 @@ $(document).ready(function () {
     if(typeof(webExtensionWallet) === "undefined") {
         $("#noExtension").show();
     }
-    var dappAddress = "n213z7m52AujEDo6DmBJQoGLW4biEPXwA5y";
+    var dappAddress = "n231D89R8Vb9WcUBjjeeLotEzhYxw97GptF";
     getMoviesByGenre(movieType);
     getHottestMovies();
 
