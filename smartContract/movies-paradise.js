@@ -56,6 +56,7 @@ var MovieReview = function (text) {
         this.movieId = obj.movieId;//电影ID
         this.author = obj.author;//作者
         this.submitTime = obj.submitTime;//提交时间
+        this.title = obj.title;//标题
         this.comment = obj.comment;//内容
         this.score = obj.score;//评分
         this.likeNum = obj.likeNum;//点赞数量
@@ -64,6 +65,7 @@ var MovieReview = function (text) {
         this.movieId = 0;//电影ID
         this.author = "";//作者
         this.submitTime = "";//提交时间
+        this.title = "";//标题
         this.comment = "";//内容
         this.score = 0;//评分
         this.likeNum = 0;//点赞数量
@@ -112,6 +114,7 @@ var NewsReview = function (text) {
         this.newId = obj.newId;//新闻ID
         this.author = obj.author;//作者
         this.submitTime = obj.submitTime;//提交时间
+        this.title = obj.title;//标题
         this.comment = obj.comment;//内容
         this.score = obj.score;//评分
         this.likeNum = obj.likeNum;//点赞数量
@@ -120,6 +123,7 @@ var NewsReview = function (text) {
         this.newId = 0;//新闻ID
         this.author = "";//作者
         this.submitTime = "";//提交时间
+        this.title = "";//标题
         this.comment = "";//内容
         this.score = 0;//评分
         this.likeNum = 0;//点赞数量
@@ -411,36 +415,37 @@ MoviesParadiseContract.prototype = {
         return JSON.stringify(result);
     },
     //提交电影评论
-    submitMovieReview:function (movieId, submitTime, comment, score) {
+    submitMovieReview:function (movieId, submitTime, title, comment, score) {
         var record = new MovieReview();
         record.id = this.movieReviewSize;
         record.movieId = movieId;
         record.submitTime = submitTime;
+        record.title = title;
         record.comment = comment;
         record.score = score;
         record.likeNum = 0;
         for(var i=0; i<this.movieSize; i++){
-            var rocord = this.movieRecords[i];
-            if(rocord.id == movieId){
-                var newRecord = new Record();
-                newRecord.id = rocord.id//ID
-                newRecord.name = rocord.name;//名称
-                newRecord.code = rocord.code;//编号
-                newRecord.genre = rocord.genre;//类型
-                newRecord.genreName = rocord.genreName;//类型
-                newRecord.releaseDate = rocord.releaseDate;//上映日期
-                newRecord.story = rocord.story;//剧情简介
-                newRecord.totalScore = rocord.totalScore + score;//总分
-                newRecord.scoreNumber = rocord.scoreNumber + 1;//评分人数
-                newRecord.score = newRecord.totalScore/newRecord.scoreNumber;//平均评分
-                newRecord.director = rocord.director;//导演
-                newRecord.screenWriter = rocord.screenWriter;//编剧
-                newRecord.leadActor = rocord.leadActor;//主演
-                newRecord.area = rocord.area;//制片国家/区域
-                newRecord.areaName = rocord.areaName;//制片国家/区域
-                newRecord.min = rocord.min;//片长
-                newRecord.imgSrc = rocord.imgSrc;//图片地址
-                newRecord.heat = rocord.heat;//热度
+            var movie = this.movieRecords[i];
+            if(movie.id == movieId){
+                var newRecord = new Movie();
+                newRecord.id = movie.id//ID
+                newRecord.name = movie.name;//名称
+                newRecord.code = movie.code;//编号
+                newRecord.genre = movie.genre;//类型
+                newRecord.genreName = movie.genreName;//类型
+                newRecord.releaseDate = movie.releaseDate;//上映日期
+                newRecord.story = movie.story;//剧情简介
+                newRecord.totalScore = movie.totalScore + score;//总分
+                newRecord.scoreNumber = movie.scoreNumber + 1;//评分人数
+                newRecord.score = movie.totalScore/newRecord.scoreNumber;//平均评分
+                newRecord.director = movie.director;//导演
+                newRecord.screenWriter = movie.screenWriter;//编剧
+                newRecord.leadActor = movie.leadActor;//主演
+                newRecord.area = movie.area;//制片国家/区域
+                newRecord.areaName = movie.areaName;//制片国家/区域
+                newRecord.min = movie.min;//片长
+                newRecord.imgSrc = movie.imgSrc;//图片地址
+                newRecord.heat = movie.heat;//热度
                 this.movieRecords.set(i, newRecord);
             }
         }
@@ -459,6 +464,7 @@ MoviesParadiseContract.prototype = {
               newRecord.id = record.id;
               newRecord.movieId = record.movieId;
               newRecord.submitTime = record.submitTime;
+              newRecord.title = record.title;
               newRecord.comment = record.comment;
               newRecord.score = record.score;
               newRecord.likeNum = likeNum;
@@ -474,7 +480,7 @@ MoviesParadiseContract.prototype = {
     //新增新闻
     setNews: function(title,subTitle,author,comment,form,imgSrc,newstime){
         var record = new News();
-        record.id = this.newsSize//ID
+        record.id = this.newsSize;//ID
         record.title = title;//新闻标题
         record.subTitle = subTitle;//短标题
         record.author = author;//作者
@@ -549,11 +555,12 @@ MoviesParadiseContract.prototype = {
         return JSON.stringify(result);
     },
     //提交新闻评论
-    submitNewsReview:function (newsId, submitTime, comment, score) {
+    submitNewsReview:function (newsId, submitTime, title, comment, score) {
         var record = new NewsReview();
         record.id = this.newsReviewSize;
         record.newsId = newsId;
         record.submitTime = submitTime;
+        record.title = title;
         record.comment = comment;
         record.score = score;
         record.likeNum = 0;
@@ -572,6 +579,7 @@ MoviesParadiseContract.prototype = {
                 newRecord.id = record.id;
                 newRecord.newsId = record.newsId;
                 newRecord.submitTime = record.submitTime;
+                newRecord.title = record.title;
                 newRecord.comment = record.comment;
                 newRecord.score = record.score;
                 newRecord.likeNum = likeNum;

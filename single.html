@@ -155,69 +155,84 @@
 <div class="w3_content_agilleinfo_inner">
     <div class="agile_featured_movies">
         <div class="inner-agile-w3l-part-head">
-            <h3 class="w3l-inner-h-title">武力2 Force 2 (2016)</h3>
+            <h3 class="w3l-inner-h-title" id="movieName"></h3>
             <p class="w3ls_head_para">写上自己的影评</p>
         </div>
         <div class="latest-news-agile-info">
-            <div class="col-md-8 latest-news-agile-left-content">
+            <div id="movieTemplate1" style="display: none">
                 <div class="single video_agile_player">
                     <div class="video-grid-single-page-agileits">
                         <div style="width:100%;height:300px;">
-                            <div class="col-md-6"><img src="images/1.jpg" alt="" style="width: 100%;height: 300px;"
-                                                       class="img-responsive"/>
+                            <div class="col-md-6">
+                                <img src="images/movie/demo.jpg" alt=""
+                                     class="img-responsive" style="width: 100%;height: 300px;"/>
                             </div>
                             <div class="col-md-6">
-                                <p>导演: Abhinay Deo</p>
-                                <p>编剧: Jasmeet K. Reen / Parveez Sheikh</p>
-                                <p>主演: 约翰·亚伯拉罕 / 索娜什·辛哈 / Tahir Raj Bhasin / 阿迪勒·侯赛因 / Björn Freiberg / Anoop Gautam</p>
-                                <p>类型: 动作</p>
-                                <p>制片国家/地区: 印度</p>
-                                <p>上映日期: 2016-11-17(印度)</p>
-                                <p>片长: 127分钟</p>
+                                <p>导演: {{director}}</p>
+                                <p>编剧: {{screenWriter}}</p>
+                                <p>主演: {{leadActor}}</p>
+                                <p>类型: {{genreName}}</p>
+                                <p>制片国家/地区: {{areaName}}</p>
+                                <p>上映日期: {{releaseDate}}</p>
+                                <p>片长: {{min}}分钟</p>
                             </div>
                         </div>
                     </div>
-                    <h4>武力2的剧情简介</h4>
-                    <p style="margin-top: 0;">2016年的《武力2》是2011年的《武力》的续集，主角继续是Yashvardhan。不过故事情节发生大的变化。影片开始部分就展示了印度在中国上海、广州、北京的特工都被干掉了？
-                        印度警察总部赶紧查，发现杀手绝对是熟悉印度特工内部信息的人干的，但是一直查不到疑犯。找到的嫌疑人现实是一个孤儿，显然没有条件实施犯罪行为。经过Yashvardhan的不懈追查，发现嫌疑人一直冒
-                        用孤儿的名字，其真实身份是某特工的儿子。当年该特工因为暴露而被灭口，后来还被印度政府视为叛徒，其妻子因为忍受不了叛徒家属的标签自杀。嫌疑人网络了很多类似特工的人，向印度政府发动的报复。</p>
+                    <h4>{{name}}的剧情简介</h4>
+                    <p style="margin-top: 0;text-indent: 2em;">{{story}}</p>
+                </div>
+            </div>
+
+            <div class="col-md-8 latest-news-agile-left-content">
+                <div id="movie-description">
+
                 </div>
                 <div class="single-agile-shar-buttons">
-                    <h4 style="font-size: 1.5em;letter-spacing: 1px;color: #0c0d0d;">武力2的最热门影评</h4>
+                    <h4 style="font-size: 1.5em;letter-spacing: 1px;color: #0c0d0d;" id="hottest-review"></h4>
                 </div>
-                <div class="admin-text">
-                    <h5>脑洞太大，补不上</h5>
-                    <div class="admin-text-left">
-                        <a href="#"><img src="images/admin.jpg" alt=""></a>
+                <div id="hottest-review2">
+
+                </div>
+                <div id="reviewTemplate1" style="display: none;">
+                    <div class="admin-text">
+                        <h5>{{title}}</h5>
+                        <div class="admin-text-left">
+                            <a href="#"><img src="images/admin.jpg" alt=""></a>
+                        </div>
+                        <div class="admin-text-right">
+                            <p>{{content}}</p>
+                            <span>作者：{{author}}</span><span> 评分：{{score}}</span>
+                            <br>
+                            <span>时间：{{submitTime}}</span><span> 点赞数量：{{likeNum}}</span>
+                        </div>
+                        <div class="clearfix"></div>
                     </div>
-                    <div class="admin-text-right">
-                        <p>印度特工持续为国牺牲，仍有许多人深陷国外监狱，谨以此片向这些无名英雄致敬？脑洞太大了，补不上啊。为什么你们要派间谍来华刺探情报？中国人偷你们印度的米了？你以为你拍无间道呢？黑帮自己做贼，
-                            为了自身利益往警察里安插卧底，卧底死了，就说他们是英雄？各种歌功颂德，甚至拍个纪录片？这个世界，只有死人才会保守秘密，
-                            结尾反派男一就是因为死了才保守住了另一些间谍的秘密。既然安插间谍，那就要做好死的觉悟。做坏事，刺探他国情报，还说的如此大义凌然，就差给这些间谍颁发诺贝尔和平奖了。本身自己就做错事，还刻意的去抹黑中国，套用我诸葛村夫名言：从未见过如此厚颜无耻之人！</p>
-                        <span>作者：n1WLizcpgsXeS6883CUN9Jb8yDiJac5fZmR</span><span> 评分：1</span>
-                        <br>
-                        <span>时间：2017-05-25 00:15:32</span><span> 点赞数量：99</span>
-                    </div>
-                    <div class="clearfix"></div>
                 </div>
                 <div class="response">
                     <h4>其他影评</h4>
-                    <div class="media response-info">
-                        <div class="media-left response-text-left">
-                            <a href="#">
-                                <img class="media-object" src="images/admin.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="media-body response-text-right">
-                            <p>情节、动作还行，女主一般般，到处黑中国，阿三自嗨得厉害。</p>
-                        </div>
-                        <ul>
-                            <li style="float: left;">n1WLizcpgsXeS6883CUN9Jb8yDiJac5fZmR</li>
-                            <li>2017-05-25 00:15:32</li>
-                            <li><a href="single.html"><i class="fa fa-reply" aria-hidden="true"></i> Reply</a></li>
-                        </ul>
-                        <div class="clearfix"></div>
+                    <div id="other-review">
+
                     </div>
+                    <div id="reviewTemplate2" style="display: none;">
+                        <div class="media response-info">
+                            <div class="media-left response-text-left">
+                                <a href="#">
+                                    <img class="media-object" src="images/admin.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="media-body response-text-right">
+                                <p>{{title}}</p>
+                                <p>{{content}}</p>
+                            </div>
+                            <ul>
+                                <li style="float: left;">{{author}}</li>
+                                <li>{{submitTime}}</li>
+                                <li><i class="fa fa-reply" aria-hidden="true"></i> Reply</li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
                     <div class="media response-info">
                         <div class="media-left response-text-left">
                             <a href="#">
@@ -225,8 +240,9 @@
                             </a>
                         </div>
                         <div class="media-body response-text-right">
+                            <p>标题</p>
                             <p>说一句大实话，印度剧情片还可以，至于动作片就实在一般，而且黑巴铁没所谓，无厘头黑中国就是有点奇怪，就算反派出卖印度特工，但很多印度派驻中国的特工，
-                                都不是在中国被杀的，而且就算在中国被杀，也不至于把恒河岸边当成是广州吧？另外，潜伏特工被发现，更多的是抓捕问口供，而不是直接杀掉……</p>
+                                都不是在中国被杀的，而且就算在中国被杀……</p>
                         </div>
                         <ul>
                             <li style="float: left;">n1WLizcpgsXeS6883CUN9Jb8yDiJac5fZmR</li>
@@ -245,13 +261,14 @@
                     </div>
                     <h5>写一条评论</h5>
                     <div class="agile-info-wthree-box">
-                        <form>
-                            <div class="col-md-12 form-info">
-                                <textarea placeholder="这里写上电影的评论" required=""></textarea>
-                                <input type="submit" value="提交">
-                            </div>
-                            <div class="clearfix"></div>
-                        </form>
+                        <div class="col-md-12 form-info">
+                            <input placeholder="这里写上影评的标题" id="form-title"
+                                   style="margin-bottom: 10px;width: 100%;font-size: 14px;outline: none;
+                                   border:1px solid #d6d4d4;background: none;padding: 8px 13px;letter-spacing: 1px;color: #333;"/>
+                            <textarea placeholder="这里写上影评的内容" id="form-content"></textarea>
+                            <input type="submit" value="提交" id="form-submit">
+                        </div>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
             </div>
@@ -452,6 +469,9 @@
 <!--end-smooth-scrolling-->
 <script src="js/bootstrap.js"></script>
 <script src="js/comment.js"></script>
-
+<script src="js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/nebPay.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/single.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
