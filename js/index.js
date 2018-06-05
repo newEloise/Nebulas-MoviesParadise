@@ -29,7 +29,7 @@ $(document).ready(function () {
 
     function cbSearch1(resp) {
         if(!resp.result) return;
-        var result = eval(JSON.parse(resp.result));
+        var result = $.parseJSON(JSON.parse(resp.result));
         if(result !== 'null') {
             $("#movie-1-left").empty();
             if(result.length > 0){
@@ -87,7 +87,7 @@ $(document).ready(function () {
 
     function cbSearch2(resp) {
         if(!resp.result) return;
-        var result = eval(JSON.parse(resp.result));
+        var result = $.parseJSON(JSON.parse(resp.result));
         if(result !== 'null') {
             $("#movie-2-left").empty();
             if(result.length > 0){
@@ -145,7 +145,7 @@ $(document).ready(function () {
 
     function cbSearch3(resp) {
         if(!resp.result) return;
-        var result = eval(JSON.parse(resp.result));
+        var result = $.parseJSON(JSON.parse(resp.result));
         if(result !== 'null') {
             $("#movie-3-left").empty();
             if(result.length > 0){
@@ -203,7 +203,7 @@ $(document).ready(function () {
 
     function cbSearch4(resp) {
         if(!resp.result) return;
-        var result = eval(JSON.parse(resp.result));
+        var result = $.parseJSON(JSON.parse(resp.result));
         if(result !== 'null') {
             $("#recent-movie-list").empty();
             if(result.length > 0){
@@ -250,7 +250,7 @@ $(document).ready(function () {
 
     function cbSearch5(resp) {
         if(!resp.result) return;
-        var result = eval(JSON.parse(resp.result));
+        var result = $.parseJSON(JSON.parse(resp.result));
         if(result !== 'null') {
             $("#hottest-movie-list").empty();
             if(result.length > 0){
@@ -289,7 +289,7 @@ $(document).ready(function () {
 
     function cbSearch6(resp) {
         if(!resp.result) return;
-        var result = eval(JSON.parse(resp.result));
+        var result = $.parseJSON(JSON.parse(resp.result));
         if(result !== 'null') {
             $("#top-movie-list-2").empty();
             if(result.length > 0){

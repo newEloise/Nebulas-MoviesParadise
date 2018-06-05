@@ -22,6 +22,7 @@
     <link rel="stylesheet" type="text/css" href="css/zoomslider.css"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="css/icons.css" rel="stylesheet">
     <script type="text/javascript" src="js/modernizr-2.6.2.min.js"></script>
     <!--/web-fonts-->
     <link href='http://fonts.googleapis.com/css?family=Tangerine:400,700' rel='stylesheet' type='text/css'>
@@ -207,8 +208,13 @@
                             <span>时间：{{submitTime}}</span>&nbsp;
                             <span>点赞数量：{{likeNum}}</span>&nbsp;
                             <span>
-                            <i class="fa fa-thumbs-up" onclick="thumbs('{{reviewId}}');"
-                               aria-hidden="true"  style="cursor: pointer;"></i>
+                                <i class="fa fa-thumbs-up" onclick="thumbs('{{reviewId}}');"
+                                   aria-hidden="true"  style="cursor: pointer;"></i>
+                                <div class="grid">
+                                    <div class="grid__item">
+                                        <button class="icobutton icobutton--thumbs-up"><span class="fa fa-thumbs-up"></span></button>
+                                    </div>
+                                </div>
                             </span>
                         </div>
                         <div class="clearfix"></div>
@@ -217,7 +223,7 @@
 
 
                 <div class="response">
-                    <h4>其他影评</h4>
+                    <h4>其他评论</h4>
                     <div id="other-review">
 
                     </div>
@@ -469,6 +475,7 @@
 </script>
 <!--end-smooth-scrolling-->
 <script src="js/bootstrap.js"></script>
+<script src="js/mo.min.js"></script>
 <script src="js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/nebPay.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/common.js" type="text/javascript" charset="utf-8"></script>

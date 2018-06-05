@@ -152,7 +152,7 @@
             <p class="w3ls_head_para">这里可以发信息给我们</p>
         </div>
         <div class="w3_mail_grids">
-            <form action="#" method="post">
+            <form onSubmit="showMsg()">
                 <div class="col-md-6 w3_agile_mail_grid">
                     <span class="input input--ichiro">
                         <input class="input__field input__field--ichiro" type="text" id="input-25"
@@ -242,5 +242,12 @@
     });
 </script>
 <script src="js/bootstrap.js"></script>
+<script src="js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    function showMsg() {
+        layer.msg('功能开发中');
+        return false;
+    }
+</script>
 </body>
 </html>
