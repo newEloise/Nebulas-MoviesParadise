@@ -28,7 +28,7 @@ $(document).ready(function () {
 
     function cbSearch1(resp) {
         if(!resp.result) return;
-        var result = eval(JSON.parse(resp.result));
+        var result = $.parseJSON(JSON.parse(resp.result));
         if(result !== 'null') {
             $("#movie-genres-list").empty();
             if(result.length > 0){
@@ -62,7 +62,7 @@ $(document).ready(function () {
 
     function cbSearch2(resp) {
         if(!resp.result) return;
-        var result = eval(JSON.parse(resp.result));
+        var result = $.parseJSON(JSON.parse(resp.result));
         if(result !== 'null') {
             $("#hottest-movie-list").empty();
             if(result.length > 0){
@@ -74,7 +74,7 @@ $(document).ready(function () {
                     }else{
                         html = html.replace("{{name}}",result[i].name);
                     }
-                    html = html.replace("{{releaseDate}}",result[i].releaseDate.substring(0,4));
+                    html = html.replace("{{releaseDate}}",result[i].releaseDate);
                     html = html.replace("{{code}}",result[i].code);
                     html = html.replace("{{movieName}}",result[i].name);
                     html = html.replace("{{movieId}}",result[i].id);
