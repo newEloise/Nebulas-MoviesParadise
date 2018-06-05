@@ -23,7 +23,7 @@ $(document).ready(function () {
     }
     function cbSearch1(resp) {
         if(!resp.result) return;
-        var result = eval(JSON.parse(resp.result));
+        var result = $.parseJSON(JSON.parse(resp.result));
         if(result !== 'null') {
             $("#news-description").empty();
             var html = $("#newsTemplate").html();
@@ -49,7 +49,7 @@ $(document).ready(function () {
     }
     function cbSearch2(resp) {
         if(!resp.result) return;
-        var result = eval(JSON.parse(resp.result));
+        var result = $.parseJSON(JSON.parse(resp.result));
         if(result !== 'null') {
             var compare = function (obj1, obj2) {
                 var val1 = obj1.likeNum;

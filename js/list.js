@@ -22,7 +22,7 @@ $(document).ready(function () {
 
     function cbSearch1(resp) {
         if(!resp.result) return;
-        var result = eval(JSON.parse(resp.result));
+        var result = $.parseJSON(JSON.parse(resp.result));
         if(result !== 'null') {
             movieSize = result;
             $("#movie-size").html(movieSize);
@@ -43,9 +43,8 @@ $(document).ready(function () {
 
     function cbSearch2(resp) {
         if(!resp.result) return;
-        var result = eval(JSON.parse(resp.result));
+        var result = $.parseJSON(JSON.parse(resp.result));
         if(result !== 'null') {
-            debugger;
             $("#movie-table").empty();
             if(result.length > 0){
                 for(var i=0; i<result.length; i++){

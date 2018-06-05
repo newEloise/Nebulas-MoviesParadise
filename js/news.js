@@ -23,7 +23,7 @@ $(document).ready(function () {
 
     function cbSearch(resp) {
         if(!resp.result) return;
-        var result = eval(JSON.parse(resp.result));
+        var result = $.parseJSON(JSON.parse(resp.result));
         if(result !== 'null') {
             $("#news-list").empty();
             for(var i=0; i<result.length; i++){
