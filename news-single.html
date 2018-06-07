@@ -174,7 +174,7 @@
 
                     <div id="newsTemplate" style="display: none;">
                         <div class="video-grid-single-page-agileits">
-                            <img src="images/news/demo.jpg" alt="" class="img-responsive">
+                            <img src="images/news/demo.jpg" style="max-height:600px;" alt="" class="img-responsive">
                         </div>
                         <h4>{{title}}</h4>
                         <div class="agile-post">
@@ -208,13 +208,10 @@
                             <span>时间：{{submitTime}}</span>&nbsp;
                             <span>点赞数量：{{likeNum}}</span>&nbsp;
                             <span>
-                                <i class="fa fa-thumbs-up" onclick="thumbs('{{reviewId}}');"
-                                   aria-hidden="true"  style="cursor: pointer;"></i>
-                                <div class="grid">
-                                    <div class="grid__item">
-                                        <button class="icobutton icobutton--thumbs-up"><span class="fa fa-thumbs-up"></span></button>
-                                    </div>
-                                </div>
+                                <button id="{{btn}}" class="icobutton icobutton--thumbs-up">
+                                    <span class="fa fa-thumbs-up" onclick="thumbs('{{reviewId}}');"
+                                          style="cursor: pointer;font-size: 24px;"></span>
+                                </button>
                             </span>
                         </div>
                         <div class="clearfix"></div>
@@ -228,7 +225,7 @@
 
                     </div>
                     <div id="reviewTemplate2" style="display: none;">
-                        <div class="media response-info">
+                        <div class="media response-info" style="overflow: visible !important">
                             <div class="media-left response-text-left">
                                 <a href="#">
                                     <img class="media-object" src="images/admin.jpg" alt="">
@@ -242,8 +239,10 @@
                                 <li style="float: left;">{{author}}</li>
                                 <li>{{submitTime}}</li>
                                 <li style="color: #189932">
-                                    <i class="fa fa-thumbs-up" onclick="thumbs('{{reviewId}}');"
-                                       aria-hidden="true"  style="cursor: pointer;"></i>
+                                    <button id="{{btn2}}" class="icobutton icobutton--thumbs-up">
+                                        <span class="fa fa-thumbs-up" onclick="thumbs('{{reviewId}}');"
+                                              style="cursor: pointer;font-size: 24px;color:#189932;"></span>
+                                    </button>
                                     {{likeNum}}
                                 </li>
                             </ul>
@@ -487,14 +486,16 @@
     var newsId = getUrlParam("newsId");
 
     function thumbs(reviewId) {
-        var to = dappAddress;
-        var value = "0";
-        var callFunction = "likeNewsReview";
-        var callArgs = [];
-        callArgs.push(reviewId);
-        nebPay.call(to, value, callFunction, JSON.stringify(callArgs), {
-            listener: cbPush2
-        });
+        setTimeout(function() {
+            var to = dappAddress;
+            var value = "0";
+            var callFunction = "likeNewsReview";
+            var callArgs = [];
+            callArgs.push(reviewId);
+            nebPay.call(to, value, callFunction, JSON.stringify(callArgs), {
+                listener: cbPush2
+            });
+        },1000);
     }
 
     function cbPush2(resp) {

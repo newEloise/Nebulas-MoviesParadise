@@ -29,6 +29,7 @@ $(document).ready(function () {
             for(var i=0; i<result.length; i++){
                 var html = $("#newsTemplate").html();
                 html = html.replace("{{newsId}}",result[i].id);
+                html = html.replace("{{newsId}}",result[i].id);
                 html = html.replace("{{title}}",result[i].title);
                 if(result[i].comment.length > 150){
                     html = html.replace("{{comment}}",result[i].comment.substring(0,147)+"...");

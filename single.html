@@ -17,6 +17,7 @@
     <link href="css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
     <link rel="stylesheet" type="text/css" href="css/zoomslider.css"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link href="css/icons.css" rel="stylesheet">
     <link href="css/font-awesome.css" rel="stylesheet">
     <script type="text/javascript" src="js/modernizr-2.6.2.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Tangerine:400,700' rel='stylesheet' type='text/css'>
@@ -206,8 +207,10 @@
                             <span>时间：{{submitTime}}</span>&nbsp;
                             <span>点赞数量：{{likeNum}}</span>&nbsp;
                             <span>
-                            <i class="fa fa-thumbs-up" onclick="thumbs('{{reviewId}}');"
-                               aria-hidden="true"  style="cursor: pointer;"></i>
+                                <button id="{{btn}}" class="icobutton icobutton--thumbs-up">
+                                        <span class="fa fa-thumbs-up" onclick="thumbs('{{reviewId}}');"
+                                              style="cursor: pointer;font-size: 24px;"></span>
+                                </button>
                             </span>
                         </div>
                         <div class="clearfix"></div>
@@ -233,8 +236,10 @@
                                 <li style="float: left;">{{author}}</li>
                                 <li>{{submitTime}}</li>
                                 <li style="color: #189932">
-                                    <i class="fa fa-thumbs-up" onclick="thumbs('{{reviewId}}');"
-                                       aria-hidden="true"  style="cursor: pointer;"></i>
+                                    <button id="{{btn2}}" class="icobutton icobutton--thumbs-up">
+                                        <span class="fa fa-thumbs-up" onclick="thumbs('{{reviewId}}');"
+                                              style="cursor: pointer;font-size: 24px;color:#189932;"></span>
+                                    </button>
                                     {{likeNum}}
                                 </li>
                             </ul>
@@ -459,6 +464,7 @@
 </script>
 <!--end-smooth-scrolling-->
 <script src="js/bootstrap.js"></script>
+<script src="js/mo.min.js"></script>
 <script src="js/comment.js"></script>
 <script src="js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/nebPay.js" type="text/javascript" charset="utf-8"></script>
@@ -473,14 +479,16 @@
     var movieId = getUrlParam("movieId");
 
     function thumbs(reviewId) {
-        var to = dappAddress;
-        var value = "0";
-        var callFunction = "likeMovieReview";
-        var callArgs = [];
-        callArgs.push(reviewId);
-        nebPay.call(to, value, callFunction, JSON.stringify(callArgs), {
-            listener: cbPush2
-        });
+        setTimeout(function() {
+            var to = dappAddress;
+            var value = "0";
+            var callFunction = "likeMovieReview";
+            var callArgs = [];
+            callArgs.push(reviewId);
+            nebPay.call(to, value, callFunction, JSON.stringify(callArgs), {
+                listener: cbPush2
+            });
+        },1000);
     }
 
     function cbPush2(resp) {
