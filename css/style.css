@@ -2111,7 +2111,8 @@ ul.bottom-links-agile li a {
 	border: 1px solid #fff;
     padding: 2em;
     margin-top: 1em;
-    background: #fe423f;
+    /*background: #fe423f;*/
+    background: #57aed8;
 }
 .admin-text h5 {
 	    font-size: 1.3em;
@@ -2120,7 +2121,8 @@ ul.bottom-links-agile li a {
     color: #fff;
 }
 .admin-text-right p {
-    color: #a01917;
+    /*color: #a01917;*/
+    color: #0a6d55;
     font-size: 0.9em;
     margin: 0 0 18px;
     line-height: 18px;
