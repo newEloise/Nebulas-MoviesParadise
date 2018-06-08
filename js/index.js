@@ -28,8 +28,8 @@ $(document).ready(function () {
     }
 
     function cbSearch1(resp) {
-        if(!resp.result) return;
-        var result = $.parseJSON(JSON.parse(resp.result));
+        if(!resp.result.replace(/\s+/g,"")) return;
+        var result = $.parseJSON(JSON.parse(resp.result.replace(/\s+/g,"").replace(/\s+/g,"")));
         if(result !== 'null') {
             $("#movie-1-left").empty();
             if(result.length > 0){
@@ -41,6 +41,8 @@ $(document).ready(function () {
                     html1 = html1.replace("{{story}}",result[0].story);
                 }
                 html1 = html1.replace("{{releaseDate}}",result[0].releaseDate);
+                html1 = html1.replace("{{genre}}",result[0].genre);
+                html1 = html1.replace("{{genreName}}",result[0].genreName);
                 html1 = html1.replace("{{genreName}}",result[0].genreName);
                 html1 = html1.replace("{{code}}",result[0].code);
                 html1 = html1.replace("{{movieName}}",result[0].name);
@@ -86,8 +88,8 @@ $(document).ready(function () {
     }
 
     function cbSearch2(resp) {
-        if(!resp.result) return;
-        var result = $.parseJSON(JSON.parse(resp.result));
+        if(!resp.result.replace(/\s+/g,"")) return;
+        var result = $.parseJSON(JSON.parse(resp.result.replace(/\s+/g,"")));
         if(result !== 'null') {
             $("#movie-2-left").empty();
             if(result.length > 0){
@@ -99,6 +101,8 @@ $(document).ready(function () {
                     html1 = html1.replace("{{story}}",result[0].story);
                 }
                 html1 = html1.replace("{{releaseDate}}",result[0].releaseDate);
+                html1 = html1.replace("{{genre}}",result[0].genre);
+                html1 = html1.replace("{{genreName}}",result[0].genreName);
                 html1 = html1.replace("{{genreName}}",result[0].genreName);
                 html1 = html1.replace("{{code}}",result[0].code);
                 html1 = html1.replace("{{movieName}}",result[0].name);
@@ -144,8 +148,8 @@ $(document).ready(function () {
     }
 
     function cbSearch3(resp) {
-        if(!resp.result) return;
-        var result = $.parseJSON(JSON.parse(resp.result));
+        if(!resp.result.replace(/\s+/g,"")) return;
+        var result = $.parseJSON(JSON.parse(resp.result.replace(/\s+/g,"")));
         if(result !== 'null') {
             $("#movie-3-left").empty();
             if(result.length > 0){
@@ -157,6 +161,8 @@ $(document).ready(function () {
                     html1 = html1.replace("{{story}}",result[0].story);
                 }
                 html1 = html1.replace("{{releaseDate}}",result[0].releaseDate);
+                html1 = html1.replace("{{genre}}",result[0].genre);
+                html1 = html1.replace("{{genreName}}",result[0].genreName);
                 html1 = html1.replace("{{genreName}}",result[0].genreName);
                 html1 = html1.replace("{{code}}",result[0].code);
                 html1 = html1.replace("{{movieName}}",result[0].name);
@@ -202,8 +208,8 @@ $(document).ready(function () {
     }
 
     function cbSearch4(resp) {
-        if(!resp.result) return;
-        var result = $.parseJSON(JSON.parse(resp.result));
+        if(!resp.result.replace(/\s+/g,"")) return;
+        var result = $.parseJSON(JSON.parse(resp.result.replace(/\s+/g,"")));
         if(result !== 'null') {
             $("#recent-movie-list").empty();
             if(result.length > 0){
@@ -249,8 +255,8 @@ $(document).ready(function () {
     }
 
     function cbSearch5(resp) {
-        if(!resp.result) return;
-        var result = $.parseJSON(JSON.parse(resp.result));
+        if(!resp.result.replace(/\s+/g,"")) return;
+        var result = $.parseJSON(JSON.parse(resp.result.replace(/\s+/g,"")));
         if(result !== 'null') {
             $("#hottest-movie-list").empty();
             if(result.length > 0){
@@ -288,8 +294,8 @@ $(document).ready(function () {
     }
 
     function cbSearch6(resp) {
-        if(!resp.result) return;
-        var result = $.parseJSON(JSON.parse(resp.result));
+        if(!resp.result.replace(/\s+/g,"")) return;
+        var result = $.parseJSON(JSON.parse(resp.result.replace(/\s+/g,"")));
         if(result !== 'null') {
             $("#top-movie-list-2").empty();
             if(result.length > 0){
@@ -301,6 +307,8 @@ $(document).ready(function () {
                     html1 = html1.replace("{{story}}",result[0].story);
                 }
                 html1 = html1.replace("{{releaseDate}}",result[0].releaseDate);
+                html1 = html1.replace("{{genre}}",result[0].genre);
+                html1 = html1.replace("{{genreName}}",result[0].genreName);
                 html1 = html1.replace("{{genreName}}",result[0].genreName);
                 html1 = html1.replace("{{code}}",result[0].code);
                 html1 = html1.replace("{{movieName}}",result[0].name);

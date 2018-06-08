@@ -70,6 +70,9 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <ul class="multi-column-dropdown">
+                                                <li><a href="movie-genres.html?type=drama&typeName=剧情">剧情</a></li>
+                                                <li><a href="movie-genres.html?type=mystery&typeName=悬疑">悬疑</a></li>
+                                                <li><a href="movie-genres.html?type=sci-fi&typeName=科幻">科幻</a></li>
                                                 <li><a href="movie-genres.html?type=adventure&typeName=冒险">冒险</a></li>
                                                 <li><a href="movie-genres.html?type=comedy&typeName=喜剧">喜剧</a></li>
                                                 <li><a href="movie-genres.html?type=documentary&typeName=纪录片">纪录片</a></li>
@@ -275,101 +278,73 @@
                 </div>
                 <h4 class="side-t-w3l-agile">热门 <span>话题</span></h4>
                 <ul class="side-bar-agile">
-                    <li><a href="single.html">John Abraham, Sonakshi Sinha and Tahir ...</a>
-                        <p>Sep 29, 2016</p></li>
-                    <li><a href="single.html">Romantic drama about two people finding out that love</a>
-                        <p>Feb 3, 2016</p></li>
-                    <li><a href="single.html">Storks have moved on from delivering babies to packages ...</a>
-                        <p>Aug 1, 2016</p></li>
-                    <li><a href="single.html">John Abraham, Sonakshi Sinha and Tahir ...</a>
-                        <p>Sep 29, 2016</p></li>
-                    <li><a href="single.html">John Abraham, Sonakshi Sinha and Tahir ...</a>
-                        <p>Sep 29, 2016</p></li>
+                    <li>2016年星爷携着《美人鱼》杀入贺岁档，影片总票房达到了33.8亿，一度成为内地影史票房第一位。
+                        两年过去了，备受粉丝期待的星爷《美人鱼2》终于开机...
+                        <p>2018-06-04</p></li>
+                    <li>上周，著名媒体CNN爆料摩根·弗里曼对多名女性性骚扰。消息出来后，美国演员工会甚至发文表示或许会撤回今年1月颁发给摩根·弗里曼的终身成就奖。
+                        而摩根·弗里曼目前的所有商业活动也被全面叫停...
+                        <p>2018-06-03</p></li>
+                    <li>前段时间冯小刚《手机2》宣布开拍的时候，崔永元就公开怼过冯小刚、刘震云，大家应该都有所耳闻吧。而近日这一事件再次升级，
+                        崔永元在微博上晒出范冰冰的合同细则和天价片酬。在这条微博里，崔永元直称范冰冰“你不用表演，你是真烂”。
+                        就在范冰冰合同被曝光后第二天，崔永元再次爆料，称某演员以天价薪酬出演...
+                        <p>2018-06-03</p></li>
+                    <li>继上周的《爵迹2》后，又一杯备受关注的国产片宣布定档了。由吴磊、梁家辉、刘嘉玲主演的《阿修罗》定档7.13上映，同样剑指暑期档...
+                        <p>2018-06-03</p></li>
                 </ul>
+
                 <h4 class="side-t-w3l-agile">正在 <span>热映</span> 电影</h4>
                 <div class="video_agile_player sidebar-player">
-                    <div class="video-grid-single-page-agileits">
-                        <div data-video="fNKUgX8PhMA" id="video1"><img src="images/22.jpg" alt=""
-                                                                       class="img-responsive">
-                            <div id="play"></div>
+                    <div id="movieTemplate2" style="display: none;">
+                        <div class="video-grid-single-page-agileits">
+                            <a href="single.html?code={{code}}&name={{movieName}}&movieId={{movieId}}">
+                                <img src="images/movie/demo.jpg" alt="MoviesParadise" class="img-responsive">
+                            </a>
+                        </div>
+                        <div class="player-text side-bar-info">
+                            <p class="fexi_header">{{name}}</p>
+                            <p class="fexi_header_para"><span class="conjuring_w3">剧情简介<label>:</label></span>
+                                {{story}}</p>
+                            <p class="fexi_header_para">
+                                <span>上映日期<label>:</label></span>{{releaseDate}}</p>
+                            <p class="fexi_header_para">
+                                <span>类型<label>:</label> </span>
+                                <a href="movie-genres.html?type={{genre}}&typeName={{genreName}}">{{genreName}}</a>
+                            </p>
+                            <p class="fexi_header_para fexi_header_para1"><span>评分<label>:</label></span>
+                                {{starHtml}}
+                            </p>
                         </div>
                     </div>
+                    <div id="movie-right-1">
 
-
-                    <div class="player-text side-bar-info">
-                        <p class="fexi_header">Me Before You </p>
-                        <p class="fexi_header_para"><span class="conjuring_w3">Story Line<label>:</label></span>Me
-                            Before You Official Trailer #2 (2016) - Emilia Clarke, Sam Claflin Movie HD
-
-                            A girl in a small town forms an unlikely....</p>
-                        <p class="fexi_header_para"><span>Release On<label>:</label></span>Feb 3, 2016 </p>
-                        <p class="fexi_header_para">
-                            <span>Genres<label>:</label> </span>
-                            <a href="genre.html">Drama</a> |
-                            <a href="genre.html">Adventure</a> |
-                            <a href="genre.html">Family</a>
-                        </p>
-                        <p class="fexi_header_para fexi_header_para1"><span>Star Rating<label>:</label></span>
-                            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
-                        </p>
                     </div>
-
                 </div>
                 <div class="clearfix"></div>
                 <div class="agile-info-recent">
                     <h4 class="side-t-w3l-agile">最近 <span>热门</span> 电影</h4>
-                    <div class="w3ls-recent-grids">
+                    <div id="movieTemplate3" style="display: none;">
                         <div class="w3l-recent-grid">
                             <div class="wom">
-                                <a href="single.html"><img src="images/m12.jpg" alt=" " class="img-responsive"></a>
+                                <a href="single.html?code={{code}}&name={{movieName}}&movieId={{movieId}}">
+                                    <img src="images/movie/demo.jpg" alt="MoviesParadise" class="img-responsive">
+                                </a>
                             </div>
                             <div class="wom-right">
-                                <h5><a href="single.html">Lorem Integer rutrum</a></h5>
-                                <p>Mauris fermentum dictum magna. Sed laoreet aliquam leo.
-                                    Ut tellus dolor, dapibus eget.</p>
+                                <h5><a href="single.html?code={{code}}&name={{movieName}}&movieId={{movieId}}">{{name}}</a></h5>
+                                <p>{{story}}</p>
                                 <ul class="w3l-sider-list">
-                                    <li><i class="fa fa-clock-o" aria-hidden="true"></i>On Jan 12, 2016</li>
-                                    <li><i class="fa fa-eye" aria-hidden="true"></i> 2602</li>
-                                </ul>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="w3l-recent-grid">
-                            <div class="wom">
-                                <a href="single.html"><img src="images/m13.jpg" alt=" " class="img-responsive"></a>
-                            </div>
-                            <div class="wom-right">
-                                <h5><a href="single.html">Lorem Integer rutrum</a></h5>
-                                <p>Mauris fermentum dictum magna. Sed laoreet aliquam leo.
-                                    Ut tellus dolor, dapibus eget.</p>
-                                <ul class="w3l-sider-list">
-                                    <li><i class="fa fa-clock-o" aria-hidden="true"></i>On Mar 3, 2016</li>
-                                    <li><i class="fa fa-eye" aria-hidden="true"></i> 2742</li>
-                                </ul>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="w3l-recent-grid">
-                            <div class="wom">
-                                <a href="single.html"><img src="images/m14.jpg" alt=" " class="img-responsive"></a>
-                            </div>
-                            <div class="wom-right">
-                                <h5><a href="single.html">Lorem Integer rutrum</a></h5>
-                                <p>Mauris fermentum dictum magna. Sed laoreet aliquam leo.
-                                    Ut tellus dolor, dapibus eget.</p>
-                                <ul class="w3l-sider-list">
-                                    <li><i class="fa fa-clock-o" aria-hidden="true"></i>On Oct 13, 2016</li>
-                                    <li><i class="fa fa-eye" aria-hidden="true"></i> 2802</li>
+                                    <li><i class="fa fa-clock-o" aria-hidden="true"></i>{{releaseDate}}</li>
+                                    <li><i class="fa fa-eye" aria-hidden="true"></i> {{heat}}</li>
                                 </ul>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
+                    <div class="w3ls-recent-grids" id="movie-right-2">
+
+                    </div>
                 </div>
+
             </div>
             <div class="clearfix"></div>
         </div>

@@ -61,6 +61,9 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <ul class="multi-column-dropdown">
+                                                <li><a href="movie-genres.html?type=drama&typeName=剧情">剧情</a></li>
+                                                <li><a href="movie-genres.html?type=mystery&typeName=悬疑">悬疑</a></li>
+                                                <li><a href="movie-genres.html?type=sci-fi&typeName=科幻">科幻</a></li>
                                                 <li><a href="movie-genres.html?type=adventure&typeName=冒险">冒险</a></li>
                                                 <li><a href="movie-genres.html?type=comedy&typeName=喜剧">喜剧</a></li>
                                                 <li><a href="movie-genres.html?type=documentary&typeName=纪录片">纪录片</a></li>
@@ -234,6 +237,7 @@
                             </div>
                             <ul>
                                 <li style="float: left;">{{author}}</li>
+                                <li>评分：{{score}}分</li>
                                 <li>{{submitTime}}</li>
                                 <li style="color: #189932">
                                     <button id="{{btn2}}" class="icobutton icobutton--thumbs-up">
@@ -291,88 +295,57 @@
                     <li>继上周的《爵迹2》后，又一杯备受关注的国产片宣布定档了。由吴磊、梁家辉、刘嘉玲主演的《阿修罗》定档7.13上映，同样剑指暑期档...
                         <p>2018-06-03</p></li>
                 </ul>
+
                 <h4 class="side-t-w3l-agile">正在 <span>热映</span> 电影</h4>
                 <div class="video_agile_player sidebar-player">
-                    <div class="video-grid-single-page-agileits">
-                        <div data-video="fNKUgX8PhMA" id="video1"><img src="images/recent-moive.jpg" alt=""
-                                                                       class="img-responsive">
-                            <div id="play"></div>
+                    <div id="movieTemplate2" style="display: none;">
+                        <div class="video-grid-single-page-agileits">
+                            <a href="single.html?code={{code}}&name={{movieName}}&movieId={{movieId}}">
+                                <img src="images/movie/demo.jpg" alt="MoviesParadise" class="img-responsive">
+                            </a>
+                        </div>
+                        <div class="player-text side-bar-info">
+                            <p class="fexi_header">{{name}}</p>
+                            <p class="fexi_header_para"><span class="conjuring_w3">剧情简介<label>:</label></span>
+                                {{story}}</p>
+                            <p class="fexi_header_para">
+                                <span>上映日期<label>:</label></span>{{releaseDate}}</p>
+                            <p class="fexi_header_para">
+                                <span>类型<label>:</label> </span>
+                                <a href="movie-genres.html?type={{genre}}&typeName={{genreName}}">{{genreName}}</a>
+                            </p>
+                            <p class="fexi_header_para fexi_header_para1"><span>评分<label>:</label></span>
+                                {{starHtml}}
+                            </p>
                         </div>
                     </div>
+                    <div id="movie-right-1">
 
-
-                    <div class="player-text side-bar-info">
-                        <p class="fexi_header">Me Before You </p>
-                        <p class="fexi_header_para"><span class="conjuring_w3">Story Line<label>:</label></span>Me
-                            Before You Official Trailer #2 (2016) - Emilia Clarke, Sam Claflin Movie HD
-
-                            A girl in a small town forms an unlikely....</p>
-                        <p class="fexi_header_para"><span>Release On<label>:</label></span>Feb 3, 2016 </p>
-                        <p class="fexi_header_para">
-                            <span>Genres<label>:</label> </span>
-                            <a href="genre.html">Drama</a> |
-                            <a href="genre.html">Adventure</a> |
-                            <a href="genre.html">Family</a>
-                        </p>
-                        <p class="fexi_header_para fexi_header_para1"><span>Star Rating<label>:</label></span>
-                            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
-                        </p>
                     </div>
-
                 </div>
                 <div class="clearfix"></div>
                 <div class="agile-info-recent">
                     <h4 class="side-t-w3l-agile">最近 <span>热门</span> 电影</h4>
-                    <div class="w3ls-recent-grids">
+                    <div id="movieTemplate3" style="display: none;">
                         <div class="w3l-recent-grid">
                             <div class="wom">
-                                <a href="single.html"><img src="images/m12.jpg" alt=" " class="img-responsive"></a>
+                                <a href="single.html?code={{code}}&name={{movieName}}&movieId={{movieId}}">
+                                    <img src="images/movie/demo.jpg" alt="MoviesParadise" class="img-responsive">
+                                </a>
                             </div>
                             <div class="wom-right">
-                                <h5><a href="single.html">Lorem Integer rutrum</a></h5>
-                                <p>Mauris fermentum dictum magna. Sed laoreet aliquam leo.
-                                    Ut tellus dolor, dapibus eget.</p>
+                                <h5><a href="single.html?code={{code}}&name={{movieName}}&movieId={{movieId}}">{{name}}</a></h5>
+                                <p>{{story}}</p>
                                 <ul class="w3l-sider-list">
-                                    <li><i class="fa fa-clock-o" aria-hidden="true"></i>On Jan 12, 2016</li>
-                                    <li><i class="fa fa-eye" aria-hidden="true"></i> 2602</li>
+                                    <li><i class="fa fa-clock-o" aria-hidden="true"></i>{{releaseDate}}</li>
+                                    <li><i class="fa fa-eye" aria-hidden="true"></i> {{heat}}</li>
                                 </ul>
                             </div>
                             <div class="clearfix"></div>
                         </div>
-                        <div class="w3l-recent-grid">
-                            <div class="wom">
-                                <a href="single.html"><img src="images/m13.jpg" alt=" " class="img-responsive"></a>
-                            </div>
-                            <div class="wom-right">
-                                <h5><a href="single.html">Lorem Integer rutrum</a></h5>
-                                <p>Mauris fermentum dictum magna. Sed laoreet aliquam leo.
-                                    Ut tellus dolor, dapibus eget.</p>
-                                <ul class="w3l-sider-list">
-                                    <li><i class="fa fa-clock-o" aria-hidden="true"></i>On Mar 3, 2016</li>
-                                    <li><i class="fa fa-eye" aria-hidden="true"></i> 2742</li>
-                                </ul>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="w3l-recent-grid">
-                            <div class="wom">
-                                <a href="single.html"><img src="images/m14.jpg" alt=" " class="img-responsive"></a>
-                            </div>
-                            <div class="wom-right">
-                                <h5><a href="single.html">Lorem Integer rutrum</a></h5>
-                                <p>Mauris fermentum dictum magna. Sed laoreet aliquam leo.
-                                    Ut tellus dolor, dapibus eget.</p>
-                                <ul class="w3l-sider-list">
-                                    <li><i class="fa fa-clock-o" aria-hidden="true"></i>On Oct 13, 2016</li>
-                                    <li><i class="fa fa-eye" aria-hidden="true"></i> 2802</li>
-                                </ul>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
+                    </div>
+                    <div class="w3ls-recent-grids" id="movie-right-2">
+
                     </div>
                 </div>
 
