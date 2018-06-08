@@ -221,7 +221,7 @@ $(document).ready(function () {
                     }else{
                         html = html.replace("{{name}}",result[i].name);
                     }
-                    html = html.replace("{{releaseDate}}",result[i].releaseDate.substring(0,4));
+                    html = html.replace("{{releaseDate}}",result[i].releaseDate);
                     html = html.replace("{{code}}",result[i].code);
                     html = html.replace("{{movieName}}",result[i].name);
                     html = html.replace("{{movieId}}",result[i].id);
@@ -268,7 +268,7 @@ $(document).ready(function () {
                     }else{
                         html = html.replace("{{name}}",result[i].name);
                     }
-                    html = html.replace("{{releaseDate}}",result[i].releaseDate.substring(0,4));
+                    html = html.replace("{{releaseDate}}",result[i].releaseDate);
                     html = html.replace("{{code}}",result[i].code);
                     html = html.replace("{{movieName}}",result[i].name);
                     html = html.replace("{{movieId}}",result[i].id);
